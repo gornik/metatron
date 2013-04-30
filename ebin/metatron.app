@@ -5,4 +5,4 @@
               {applications,[kernel,stdlib]},
               {mod,{metatron_app,[]}},
               {env,[]},
-              {modules,[metatron_app,metatron_sup]}]}.
+              {modules,[metatron_app,metatron_server,metatron_sup]}]}.
