@@ -1,3 +1,5 @@
+.PHONY: all deps compile test clean
+
 PROJECT = metatron
 REBAR = rebar
 
@@ -10,7 +12,7 @@ compile:
 	$(REBAR) compile
 
 test:
-	$(REBAR) skip_deps=true eunit
+	$(REBAR) eunit skip_deps=true
 
 clean:
 	$(REBAR) clean
