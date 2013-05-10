@@ -1,4 +1,4 @@
-.PHONY: all deps compile test clean
+.PHONY: all deps compile test clean start
 
 PROJECT = metatron
 REBAR = rebar
@@ -16,4 +16,7 @@ test:
 
 clean:
 	$(REBAR) clean
+
+run: all
+	erl -pa ebin -pa deps/*/ebin -s metatron_app
 

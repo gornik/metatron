@@ -1,8 +1,6 @@
+-module(metatron_game_sup).
 
--module(metatron_sup).
-
--behaviour(supervisor).
-
+-behavior(supervisor).
 -export([start_link/0]).
 -export([init/1]).
 
@@ -15,7 +13,5 @@ start_link() ->
 init([]) ->
     {ok, { {one_for_one, 5, 10}, 
         [
-            ?CHILD(metatron_game_server, worker),
-            ?CHILD(metatron_game_sup, supervisor)
         ]}}.
 

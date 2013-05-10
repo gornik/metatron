@@ -1,11 +1,12 @@
 {application, metatron,
  [
-  {description, ""},
+  {description, "Metatron game server"},
   {vsn, "1"},
   {registered, []},
   {applications, [
                   kernel,
-                  stdlib
+                  stdlib,
+                  cowboy
                  ]},
   {mod, { metatron_app, []}},
   {env, []}
