@@ -4,6 +4,7 @@
   {vsn, "1"},
   {registered, []},
   {applications, [
+                  mimetypes,
                   kernel,
                   stdlib,
                   cowboy

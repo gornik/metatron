@@ -21,7 +21,7 @@ start(_StartType, _StartArgs) ->
             {"/", metatron_toppage_handler, []},
             {"/websocket", metatron_ws_handler, []},
             {"/static/[...]", cowboy_static, [
-                {directory, {priv_dir, websocket, [<<"static">>]}},
+                {directory, {priv_dir, metatron_app, [<<"static">>]}},
                 {mimetypes, {fun mimetypes:path_to_mimes/2, default}}
             ]}
         ]}

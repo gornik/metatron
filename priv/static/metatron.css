@@ -1,0 +1,22 @@
+body {
+    margin: 0;
+    padding: 0;
+}
+
+header#topheader {
+    padding:15px;
+}
+
+aside#gameinfo {
+    width: 200px;
+    background-color: red;
+    float: left;
+}
+
+div#container {
+}
+
+div#content {
+    margin-left:200px;
+    background-color:blue;
+}
