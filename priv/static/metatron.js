@@ -1,4 +1,32 @@
-var Metatron = (function() {
+jQuery.fn.serializeObject = function() {
+    var arrayData, objectData;
+    arrayData = this.serializeArray();
+    objectData = {};
+
+    $.each(arrayData, function() {
+        var value;
+
+        if (this.value != null) {
+            value = this.value;
+        } else {
+            value = '';
+        }
+
+        if (objectData[this.name] != null) {
+            if (!objectData[this.name].push) {
+                objectData[this.name] = [objectData[this.name]];
+            }
+
+            objectData[this.name].push(value);
+        } else {
+            objectData[this.name] = value;
+        }
+    });
+
+    return objectData;
+};
+
+var Metatron = (function($) {
     var my = {};
 
     function createAddress() {
@@ -7,12 +35,18 @@ var Metatron = (function() {
             window.location.pathname +
             "websocket";
     }
-    
-    my.connect = function() {
-        
+
+    function createStartGameCommand() {
+       var formData = $("#gameoptions").serializeObject(); 
+       return '{"start_game":' + JSON.stringify(formData) + '}';
+    }
+
+    function startGame() {
+       $("#startbutton").attr('disabled', 'disabled');
+
         var connection = new WebSocket(createAddress());
         connection.onopen = function() {
-            connection.send("Ping");
+            connection.send(createStartGameCommand());
         };
 
         connection.onerror = function(error) {
@@ -23,6 +57,12 @@ var Metatron = (function() {
             console.log("Server: " + e.data);
         };
     };
+
+
     
+    $("#startbutton").click(function() {
+        startGame();
+    });
+
     return my;
-}());
+}(jQuery));

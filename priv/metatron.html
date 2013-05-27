@@ -1,13 +1,22 @@
 <html>
 <head>
     <link rel="stylesheet" type="text/css" href="static/metatron.css" />
-    <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>
-    <script type="text/javascript" src="static/metatron.js"></script>
 </head>
 <body>
     <div id="container">
         <header id="topheader">
-            metatron
+            <span id="title">metatron</span>
+            <form id="gameoptions">
+                <label for="height">Height</label>
+                <input type="text" id="height" name="height" value="100"></input>
+                <label for="width">Width</label>
+                <input type="text" id="width" name="width" value="100"></input>
+                <label for="rounds">Rounds</label>
+                <input type="text" id="rounds" name="rounds" value="50"></input>
+            </form>
+
+            <input type="submit" id="startbutton" value="Start game"></input>
+
         </header>
 
         <aside id="gameinfo">
@@ -21,9 +30,11 @@
         </aside>
 
         <div id="content">
-            div
-            <a href="javascript:Metatron.connect()">go</a>
+            board 
         </div>
     </div>
+
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>
+    <script type="text/javascript" src="static/metatron.js"></script>
 </body>
 </html>

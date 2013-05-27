@@ -18,5 +18,5 @@ clean:
 	$(REBAR) clean
 
 run: all
-	erl -pa ebin -pa deps/*/ebin -s metatron_app
+	erl -pa ebin -pa deps/*/ebin -boot start_sasl -s metatron_app
 
