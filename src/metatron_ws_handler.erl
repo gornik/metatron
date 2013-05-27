@@ -25,10 +25,15 @@ websocket_info(_Info, Req, State) ->
 websocket_terminate(_Reason, _Req, _State) ->
     ok.
 
-
+%% @TODO validate input
 handle_json_command([{ <<"start_game">>, Options }]) ->
+    OptionsDict = dict:from_list(Options),    
+    metatron_game_server:start_game(
+        dict:fetch(<<"height">>, OptionsDict),
+        dict:fetch(<<"width">>, OptionsDict),
+        dict:fetch(<<"rounds">>, OptionsDict)),
     <<"Game started">>;
 
 handle_json_command(_) ->
     <<"Unrecognized command">>.
-    
+
