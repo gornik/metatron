@@ -29,11 +29,15 @@ websocket_terminate(_Reason, _Req, _State) ->
 handle_json_command([{ <<"start_game">>, Options }]) ->
     OptionsDict = dict:from_list(Options),    
     metatron_game_server:start_game(
-        dict:fetch(<<"height">>, OptionsDict),
-        dict:fetch(<<"width">>, OptionsDict),
-        dict:fetch(<<"rounds">>, OptionsDict)),
+        get_integer(<<"height">>, OptionsDict),
+        get_integer(<<"width">>, OptionsDict),
+        get_integer(<<"rounds">>, OptionsDict)),
     <<"Game started">>;
 
 handle_json_command(_) ->
     <<"Unrecognized command">>.
 
+get_integer(Key, OptionsDict) ->
+    BitStr = dict:fetch(Key, OptionsDict),
+    List = binary_to_list(BitStr),
+    list_to_integer(List).
