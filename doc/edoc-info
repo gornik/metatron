@@ -1,0 +1,6 @@
+%% encoding: UTF-8
+{application,metatron}.
+{packages,[]}.
+{modules,[metatron_app,metatron_board_cell,metatron_game_board_sup,
+          metatron_game_server,metatron_sup,metatron_toppage_handler,
+          metatron_ws_handler]}.

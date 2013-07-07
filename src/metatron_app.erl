@@ -1,20 +1,30 @@
+%%%-------------------------------------------------------------------
+%%% @doc Metatron - main application module
+%%%
+%%% This is the starting module for the Metatron application.
+%%% @end
+%%%-------------------------------------------------------------------
+
 -module(metatron_app).
 
 -behaviour(application).
 
--export([start/0, start/2, stop/1]).
+%% application callbacks
+-export([
+         start/2,
+         stop/1
+        ]).
 
-start() ->
-    start(metatron).
+%% external API
+-export([start/0]).
 
-start(App) ->
-    case application:start(App) of
-        ok -> ok;
-        {error, {not_started, Dependency}} ->
-            start(Dependency),
-            start(App)
-    end.
 
+%% ===================================================================
+%% application callbacks
+%% ===================================================================
+
+%% @private
+%% @doc Configures cowboy routes, starts main application supervisor.
 start(_StartType, _StartArgs) ->
     Dispatch = cowboy_router:compile([
         {'_', [
@@ -30,5 +40,28 @@ start(_StartType, _StartArgs) ->
         [{env, [{dispatch, Dispatch}]}]),
     metatron_sup:start_link().
 
+%% @private
+%% @doc Stops the application.
 stop(_State) ->
     ok.
+
+
+%% ===================================================================
+%% external API
+%% ===================================================================
+
+%% @doc Starts the Metatron application and all necessary dependecies.
+-spec start() -> ok.
+start() ->
+    start(metatron).
+
+%% @private
+start(App) ->
+    case application:start(App) of
+        ok -> ok;
+        {error, {not_started, Dependency}} ->
+            start(Dependency),
+            start(App)
+    end.
+
+
