@@ -22,3 +22,9 @@ div#content {
 span#title {
     margin-right: 200px;
 }
+
+canvas#board {
+    background-image: url('/static/cell-empty.png');
+    height: 401px;
+    width: 501px;
+}

@@ -1,3 +1,4 @@
+// helper for converting jQuery form to array
 jQuery.fn.serializeObject = function() {
     var arrayData, objectData;
     arrayData = this.serializeArray();
